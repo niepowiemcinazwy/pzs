@@ -1,0 +1,15 @@
+Grafiki mebli (public/sprites):
+
+1. "Isometric pixel bedroom" - Sweeetpotatoo (https://sweeetpotatoo.itch.io/isometric-pixel-bedroom)
+   Licencja autora: "free to use anywhere" (darmowe do dowolnego uzytku).
+   Pliki: biurko*, regal_*, szafa*, szafka*, komoda, krzeslo_a..d, ksiazki_*, kwiatek_czerwony,
+   pudelko, obrazek, teczka, wazon, dywan, lampki_choinkowe.
+
+2. Elementy z arkusza office.png z projektu "Playground Environment" (Dawid Wawer),
+   lekko przerobione (kolory) - komputery, monitory, biurka biale/bezowe/ciemne, kartoteki,
+   regaly, rosliny, lampki. Uwaga: licencja oryginalnego arkusza jest nieustalona (patrz README Playground).
+
+3. Wszystko inne (sciany, podlogi, okna, szafy serwerowe, stol, kuchnia, kanapy, krzesla biurowe,
+   postacie pracownikow, ikony) jest rysowane w kodzie aplikacji (src/engine2d, src/ui/ikony.js).
+
+Przygotowanie sprite'ow: narzedzia/przygotuj_sprite.py

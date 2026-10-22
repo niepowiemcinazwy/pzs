@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Environment</title>
+    <meta name="commit" content="%COMMIT%" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scena"></canvas>
+      <div id="etykiety"></div>
+      <div id="ui"></div>
+      <div id="ladowanie">
+        <div class="ladowanie-logo">TE</div>
+        <div class="ladowanie-tytul">Team Environment</div>
+        <div class="ladowanie-pasek"><span id="ladowanie-postep"></span></div>
+        <div class="ladowanie-opis" id="ladowanie-opis">Wczytywanie biura…</div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+    <div id="wersja" title="Commit, z którego zbudowano tę wersję">wersja %COMMIT%</div>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+# sekrety - nigdy do repo
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# node / build
+node_modules/
+dist/
+build/
+release/
+
+# system / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

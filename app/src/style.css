@@ -1,0 +1,82 @@
+:root {
+  --papier: #17161c;
+  --papier-2: #1f1e26;
+  --papier-3: #2c2b35;
+  --papier-jasny: #0e0d12;
+  --atrament: #ecebf2;
+  --atrament-2: #b4b2bf;
+  --atrament-3: #7f7d8a;
+  --linia: #3a3944;
+  --linia-hi: #55545f;
+  --ciemny: #17120c;
+  --drewno: #8a5534;
+  --drewno-c: #2a1c14;
+  --bursztyn: #ffb347;
+  --bursztyn-c: #c97a1f;
+  --turkus: #3cc2b2;
+  --czerwony: #ff6060;
+  --zielony: #5ad84a;
+  --fiolet: #a98aff;
+  --noc: #09080c;
+  --font: 'Pixelify Sans', 'Segoe UI', sans-serif;
+  --font-maly: 'Tiny5', 'Pixelify Sans', monospace;
+  --cien: 0 0 0 3px #000, 5px 5px 0 3px rgba(0, 0, 0, 0.35);
+  --ramka: 3px solid var(--linia);
+  --bevel: inset 0 3px 0 rgba(255, 255, 255, 0.04);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--noc); color: var(--atrament); font-family: var(--font); font-size: 15px; user-select: none; -webkit-font-smoothing: none; }
+#app { position: fixed; inset: 0; }
+#scena { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; image-rendering: pixelated; }
+#scena.przeciaganie { cursor: grabbing; }
+#scena.nad-obiektem { cursor: pointer; }
+#etykiety { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+#ui { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+
+/* ekran ładowania */
+#ladowanie { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: var(--noc); z-index: 100; transition: opacity .5s; }
+#ladowanie.ukryte { opacity: 0; pointer-events: none; }
+.ladowanie-logo { width: 72px; height: 72px; background: var(--bursztyn); color: var(--ciemny); border: 4px solid #000; box-shadow: 6px 6px 0 #000; font: 700 30px var(--font); display: grid; place-items: center; }
+.ladowanie-tytul { font: 700 28px var(--font); color: var(--atrament); letter-spacing: 1px; }
+.ladowanie-pasek { width: 280px; height: 14px; border: 3px solid var(--linia); background: #000; padding: 2px; }
+.ladowanie-pasek span { display: block; height: 100%; width: 0; background: repeating-linear-gradient(90deg, var(--bursztyn) 0 8px, var(--bursztyn-c) 8px 10px); transition: width .2s; }
+.ladowanie-opis { color: var(--atrament-3); font: 14px var(--font); }
+
+/* ---------- plakietki nad głowami */
+.et-osoba { position: absolute; left: 0; top: 0; pointer-events: auto; cursor: pointer; will-change: transform; }
+.et-karta { position: absolute; left: 0; bottom: 0; transform: translate(-50%, 0); background: rgba(20,19,25,.92); border: 2px solid #000; padding: 1px 6px 2px; text-align: center; white-space: nowrap; box-shadow: 2px 2px 0 rgba(0,0,0,.45); }
+.et-osoba:hover .et-karta { border-color: var(--linia-hi); background: #24232c; }
+.et-osoba.zaznaczona .et-karta { background: var(--bursztyn); border-color: #000; }
+.et-osoba.zaznaczona .et-imie, .et-osoba.zaznaczona .et-rola, .et-osoba.zaznaczona .et-dzial { color: var(--ciemny); }
+.et-imie { font: 600 13px/15px var(--font); color: var(--atrament); display: flex; align-items: center; justify-content: center; gap: 4px; }
+.et-kropka { width: 7px; height: 7px; display: inline-block; border: 1px solid #000; flex: none; }
+.et-gwiazdka { color: var(--bursztyn-c); font-size: 11px; }
+.et-rola { font: 11px/13px var(--font); color: var(--atrament-2); }
+.et-dzial { font: 10px/12px var(--font-maly); text-transform: uppercase; color: var(--kolor); letter-spacing: .5px; }
+#etykiety.daleko .et-rola, #etykiety.daleko .et-dzial { display: none; }
+#etykiety.bardzo-daleko .et-karta { padding: 0 4px; border-width: 1px; }
+#etykiety.bardzo-daleko .et-imie { font-size: 10px; line-height: 12px; }
+#etykiety.bardzo-daleko .et-kropka { display: none; }
+#etykiety.bardzo-daleko .et-biurko { display: none; }
+.et-dymek { position: absolute; left: 0; bottom: 100%; margin-bottom: 44px; transform: translate(-50%, 4px); background: #f2f2f4; color: #111; font: 600 12px var(--font); padding: 3px 8px; border: 2px solid #000; white-space: nowrap; opacity: 0; transition: opacity .2s, transform .2s; box-shadow: 2px 2px 0 rgba(0,0,0,.4); pointer-events: none; }
+.et-dymek::before { content: ''; position: absolute; left: calc(50% - 5px); top: 100%; border: 5px solid transparent; border-top-color: #000; border-bottom: 0; }
+.et-dymek::after { content: ''; position: absolute; left: calc(50% - 3px); top: 100%; border: 3px solid transparent; border-top-color: #f2f2f4; border-bottom: 0; }
+.et-dymek.widoczny { opacity: 1; transform: translate(-50%, 0); }
+#etykiety.daleko .et-dymek { margin-bottom: 20px; }
+#etykiety.bardzo-daleko .et-dymek { margin-bottom: 4px; font-size: 10px; padding: 1px 5px; }
+
+.et-pokoj { position: absolute; left: 0; top: 0; pointer-events: auto; display: inline-flex; align-items: center; gap: 6px; margin: 0; padding: 3px 9px 4px; background: var(--drewno-c); border: 2px solid #120a06; box-shadow: inset 0 0 0 1px #6b4630, 3px 3px 0 rgba(0,0,0,.5); color: #f2e6d0; font: 600 13px var(--font); cursor: pointer; white-space: nowrap; translate: -50% -50%; will-change: transform; }
+.et-pokoj:hover, .et-pokoj.zaznaczony { background: #5a3624; color: #fff; }
+.et-pokoj.zaznaczony { box-shadow: inset 0 0 0 1px var(--kolor), 0 0 0 2px var(--kolor), 3px 3px 0 rgba(0,0,0,.5); }
+.et-pokoj-ikona { color: var(--kolor); font-size: 12px; }
+.et-licznik { min-width: 18px; height: 16px; background: var(--kolor); color: var(--ciemny); font: 11px var(--font-maly); display: inline-grid; place-items: center; padding: 0 4px; border: 1px solid #120a06; }
+
+.et-biurko { position: absolute; left: 0; top: 0; pointer-events: auto; cursor: pointer; translate: -50% -50%; display: flex; align-items: center; gap: 4px; padding: 1px 5px; background: rgba(20, 14, 10, .85); border: 1px solid #000; font: 10px var(--font-maly); color: var(--atrament); white-space: nowrap; will-change: transform; }
+.et-b-klucz { color: #7fe3d3; }
+.et-b-pasek { width: 30px; height: 5px; background: #3a2c22; border: 1px solid #000; display: inline-block; }
+.et-b-pasek i { display: block; height: 100%; background: #6fdc7a; }
+.et-b-proc { color: #fff; }
+
+#wersja { position: fixed; right: 14px; bottom: 2px; z-index: 3; font: 11px var(--font-maly); color: var(--atrament-3); pointer-events: none; }
+body.tryb-prezentacji #wersja { display: none; }
