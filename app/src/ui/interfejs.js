@@ -267,7 +267,7 @@ export class Interfejs {
       ),
       prosba?.stan === 'zaakceptowano' ? h('div.info-box', {}, '🖥️ ', `${p.imie} zaakceptował(a) prośbę. Samo połączenie zdalnym pulpitem uruchomi moduł backendu (w przygotowaniu).`) : null,
       h('div.sekcja', {},
-        h('div.sekcja-nag', {}, h('b', {}, 'Zadania'), h('span.szary', {}, `${zadania.length}`)),
+        h('div.sekcja-nag', {}, h('b', {}, 'Zadania'), h('span.szary', {}, zadania.length + ' łącznie')),
         h('div.kafelki-mini', {},
           h('div', {}, h('b', {}, ileWg('w_trakcie') + ileWg('do_review')), h('small', {}, 'w toku')),
           h('div', {}, h('b', {}, ileWg('do_zrobienia')), h('small', {}, 'do zrobienia')),
