@@ -346,7 +346,7 @@ export class Interfejs {
         h('button.wiersz-osoby', { onclick: () => this.wybierzOsobe(kier.id) }, this.avatar(kier.id, 34), h('div', {}, h('b', {}, `${kier.imie} ${kier.nazwisko}`), h('small', {}, kier.rola))),
       ),
       h('div.sekcja', {},
-        h('div.sekcja-nag', {}, h('b', {}, 'Co teraz robią'), h('span.szary', {}, 'na żywo')),
+        h('div.sekcja-nag', {}, h('b', {}, 'Co teraz robią'), h('span.szary', {}, 'na żywo · ' + ludzie.length + ' os.')),
         h('div.lista-ludzi', { 'data-na-zywo': 'ludzie-dzialu' }, ...ludzie.map((p) => this._wierszOsoby(p))),
       ),
       h('div.sekcja', {},
