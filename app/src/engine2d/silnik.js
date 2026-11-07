@@ -2,7 +2,7 @@
 // światła, wskazywanie obiektów myszą.
 import { iso, zIso } from './iso.js'
 
-export class Silnik {
+export class Silnik {{ // celowy blad skladni (test CI)
   constructor(canvas) {
     this.canvas = canvas
     this.g = canvas.getContext('2d', { alpha: false })
