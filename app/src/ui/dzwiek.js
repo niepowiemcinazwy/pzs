@@ -38,6 +38,7 @@ const DZWIEKI = {
 
 export function graj(nazwa) {
   if (wyciszone) return
+  // TODO(PZS-22): pusty catch połyka błędy dźwięku - logować je albo wyłączać dźwięki po pierwszym błędzie
   try { DZWIEKI[nazwa]?.() } catch {}
 }
 
