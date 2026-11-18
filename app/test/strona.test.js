@@ -12,3 +12,8 @@ test('index.html ma miejsce na skrót commita', () => {
 test('strona ma tytuł Team Environment', () => {
   assert.match(html, /<title>[^<]*Team Environment[^<]*<\/title>/)
 })
+
+// nowe wymaganie: strona ma opis dla wyszukiwarek; kodu jeszcze nie ma, więc test jest czerwony
+test('strona ma opis (meta description)', () => {
+  assert.match(html, /<meta name="description" content="[^"]+">/)
+})
