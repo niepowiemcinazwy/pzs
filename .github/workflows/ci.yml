@@ -6,6 +6,18 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
+# jeden przebieg na gałąź naraz: kolejne wdrożenie na main czeka, aż poprzednie skończy wszystkie joby
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  # adres serwera deweloperskiego zespołu (GitHub Pages repozytorium)
+  SERWER: https://niepowiemcinazwy.github.io/pzs/
+
 jobs:
   build:
     name: build
@@ -37,3 +49,83 @@ jobs:
         with:
           name: strona
           path: app/dist
+
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # testy jednostkowe (node:test) nie potrzebują żadnych paczek
+      - name: Testy jednostkowe
+        run: npm test
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      # instaluje ESLint dokładnie w wersjach z package-lock.json
+      - name: Instalacja zależności
+        run: npm ci
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+      - name: ESLint
+        run: npm run lint
+
+  deploy:
+    name: deploy
+    # brama: wdrożenie startuje dopiero po zielonym buildzie, testach i lincie
+    needs: [build, test, lint]
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.wdrozenie.outputs.page_url }}
+    steps:
+      # wdrażamy dokładnie tę stronę, którą zbudował i sprawdził job build w tym przebiegu
+      - uses: actions/download-artifact@v4
+        with:
+          name: strona
+          path: strona
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: strona
+      - id: wdrozenie
+        uses: actions/deploy-pages@v4
+
+  smoke:
+    name: smoke
+    # test po wdrożeniu: w Pull Requeście jest pomijany razem z deploy
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      # pobiera stronę spod adresu serwera i szuka skrótu commita z tego przebiegu;
+      # ?v=... omija cache CDN, pętla daje serwerowi do 5 minut na podmianę wersji
+      - name: Strona pod adresem serwera pokazuje wdrożony commit
+        run: |
+          for proba in $(seq 1 30); do
+            if curl -fsS "${SERWER}?v=${GITHUB_SHA}" | grep "wersja ${GITHUB_SHA::7}"; then
+              exit 0
+            fi
+            echo "Próba $proba: jeszcze nie ma wersji ${GITHUB_SHA::7}, czekam 10 s"
+            sleep 10
+          done
+          echo "Pod ${SERWER} działa inna wersja niż ${GITHUB_SHA::7}"
+          exit 1
