@@ -56,7 +56,9 @@ Właściciele ról:
 
 - Front: JavaScript, Canvas 2D (silnik izometryczny), Vite, Electron (wersja na komputer)
 - Backend (w kolejnych sprintach): Node.js + PostgreSQL
-- CI: GitHub Actions – build przy każdym Pull Requeście
+- Testy: `node:test` (`npm test`), lint: ESLint (`npm run lint`)
+- CI/CD: GitHub Actions – `build`, `test`, `lint` przy każdym Pull Requeście; po scaleniu do `main` `deploy` na GitHub Pages i test po wdrożeniu `smoke`
+- Serwer deweloperski: https://niepowiemcinazwy.github.io/pzs/
 
 ## Jak uruchomić
 
@@ -64,7 +66,9 @@ Właściciele ról:
 cd app
 npm install
 npm start          # aplikacja okienkowa (Electron)
-npm run serwer     # wersja przeglądarkowa na http://localhost:8080
+npm run serwer     # wersja przeglądarkowa lokalnie na http://localhost:8080
+npm test           # testy jednostkowe
+npm run lint       # ESLint
 ```
 
 Na dole strony widać `wersja <skrót commita>`, z którego zbudowano wersję.
@@ -72,6 +76,6 @@ Na dole strony widać `wersja <skrót commita>`, z którego zbudowano wersję.
 ## Zasady pracy z repozytorium
 
 - Na `main` nie pushujemy bezpośrednio – każda zmiana idzie przez Pull Request.
-- PR musi mieć zatwierdzenie (approval) od innej osoby i zielone CI.
+- PR musi mieć zatwierdzenie (approval) od innej osoby i zielone wymagane checki: `build`, `test`, `lint`.
 
 Zasady współpracy są w pliku [TEAM_CONTRACT.md](TEAM_CONTRACT.md).

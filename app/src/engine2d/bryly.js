@@ -91,7 +91,7 @@ const DREWNO = '#9a5a3a', DREWNO_JASNE = '#b9774b', DREWNO_GORA = '#8b4b34'
 /** Rejestruje wszystkie bryły rysowane w kodzie. */
 export function zbudujBryly() {
   // --- szafa serwerowa: 3 klatki diod + wersja z alarmem (front = lewa ściana, czyli strona +z)
-  const ledy = (faza, alarm) => (sc, u, v, px, py) => {
+  const ledy = (faza, alarm) => (sc, u, v) => {
     if (sc !== 'lewa') return null
     if (u < 0.1 || u > 0.9 || v < 0.06 || v > 0.94) return '#2b3140'
     const rzad = Math.floor(v * 14)

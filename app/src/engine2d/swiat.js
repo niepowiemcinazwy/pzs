@@ -8,20 +8,6 @@ import {
   WYPOSAZENIE, SZAFY, MIEJSCA_SPOTKAN, MIEJSCA_KUCHNIA, PUNKTY_KAWA,
 } from './plan.js'
 
-const hex = (h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]
-const mn = (c, k) => [c[0] * k, c[1] * k, c[2] * k]
-
-function losowy(ziarno) {
-  let s = ziarno >>> 0 || 1
-  return () => { s ^= s << 13; s ^= s >>> 17; s ^= s << 5; return ((s >>> 0) % 10000) / 10000 }
-}
-// deterministyczny "szum" dla kafla
-const szumK = (a, b, c = 0) => {
-  let h = (a * 73856093) ^ (b * 19349663) ^ (c * 83492791)
-  h = (h ^ (h >>> 13)) * 1274126177
-  return ((h ^ (h >>> 16)) >>> 0) % 1000 / 1000
-}
-
 // ---------------------------------------------------------------- budowa
 export function zbudujSwiat() {
   const siatka = new Siatka(W, D, 0.5)
@@ -177,7 +163,6 @@ function progowanie(c) {
   const g = c.getContext('2d')
   const d = g.getImageData(0, 0, c.width, c.height)
   for (let i = 0; i < d.data.length; i += 4) {
-    const jas = d.data[i] + d.data[i + 1] + d.data[i + 2]
     if (d.data[i] > 140) { d.data[i] = 255; d.data[i + 1] = 193; d.data[i + 2] = 69 } else { d.data[i] = 20; d.data[i + 1] = 33; d.data[i + 2] = 61 }
     d.data[i + 3] = 255
   }

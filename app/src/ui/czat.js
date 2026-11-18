@@ -1,5 +1,5 @@
 // Czat z pracownikami: lista osób (status, czy w aplikacji, kiedy widziany, co robi) i rozmowa.
-import { h, dodaj, wyczysc } from './dom.js'
+import { h, wyczysc } from './dom.js'
 import * as api from '../dane/api.js'
 import * as dzwiek from './dzwiek.js'
 import { ikona } from './ikony.js'
