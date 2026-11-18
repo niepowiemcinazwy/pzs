@@ -591,7 +591,8 @@ export class Interfejs {
       }
     }
     this._probkaMetryk()
-    if (this._licznikDoku = ((this._licznikDoku ?? 0) + 1) % 3) return
+    this._licznikDoku = ((this._licznikDoku ?? 0) + 1) % 3
+    if (this._licznikDoku) return
     this._odswiezDok()
     this.czat.odswiezListe()
   }

@@ -1,5 +1,5 @@
 // Pracownicy w biurze 2D: ruch po siatce, animacje (chodzenie, siedzenie, gesty), dymki i proste "życie" biura.
-import { klatka, SZER, STOPA_X, STOPA_Y } from './postacie.js'
+import { klatka, STOPA_X, STOPA_Y } from './postacie.js'
 import { strona as stronaRuchu } from './iso.js'
 import { KORYTARZ, SZEROKOSC, MIEJSCA_SPOTKAN, MIEJSCA_KUCHNIA, PUNKTY_KAWA, POKOJE } from './plan.js'
 import * as api from '../dane/api.js'
