@@ -26,6 +26,9 @@ export function h(tag, atrybuty = {}, ...dzieci) {
 
 export function wyczysc(el) { while (el.firstChild) el.removeChild(el.firstChild); return el }
 
+// stary format inicjałów po zmianie panelu - nikt go już nie czyta, ale został w kodzie
+const staryFormatInicjalow = (imie) => imie.slice(0, 2)
+
 export function inicjaly(imie, nazwisko) { return (imie[0] + (nazwisko?.[0] ?? '')).toUpperCase() }
 
 export function escape(t) {
