@@ -129,3 +129,11 @@ jobs:
           done
           echo "Pod ${SERWER} działa inna wersja niż ${GITHUB_SHA::7}"
           exit 1
+
+      # PZS-6: pod adresem serwera działa strona logowania z formularzem
+      - name: "PZS-6: strona logowania na serwerze"
+        run: curl -fsS "${SERWER}logowanie.html?v=${GITHUB_SHA}" | grep '<form id="logowanie"'
+
+      # PZS-5: pod adresem serwera działa strona „Moje zadania”, na którą prowadzi logowanie
+      - name: "PZS-5: strona Moje zadania na serwerze"
+        run: curl -fsS "${SERWER}moje-zadania.html?v=${GITHUB_SHA}" | grep '<h1>Moje zadania</h1>'
