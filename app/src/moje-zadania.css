@@ -1,0 +1,8 @@
+/* Lista zadań na stronie „Moje zadania” (PZS-5). */
+.podsumowanie { margin: 0 0 12px; color: var(--atrament-3); font-family: var(--font-maly); }
+.zadania { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.zadanie { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--papier); border: var(--ramka); }
+.zadanie b { color: var(--turkus); }
+.zadanie small { display: block; margin-top: 2px; color: var(--atrament-3); font-family: var(--font-maly); }
+.zadanie select { padding: 6px; background: var(--papier-2); color: var(--atrament); border: var(--ramka); font: inherit; }
+.zadanie.zrobione span { text-decoration: line-through; color: var(--atrament-3); }
