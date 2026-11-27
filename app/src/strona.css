@@ -1,0 +1,18 @@
+/* Wspólny wygląd prostych stron (logowanie, moje zadania) – ten sam styl co biuro. */
+@import url('./style.css');
+
+html, body { overflow: auto; user-select: text; }
+body { display: flex; justify-content: center; align-items: flex-start; min-height: 100%; padding: 48px 16px; }
+.karta { width: 100%; max-width: 560px; background: var(--papier-2); border: var(--ramka); box-shadow: var(--cien); padding: 24px; }
+.karta h1 { margin: 0 0 4px; font-size: 26px; color: var(--bursztyn); }
+.karta .opis { margin: 0 0 20px; color: var(--atrament-2); }
+.pole { display: block; margin-bottom: 14px; }
+.pole span { display: block; margin-bottom: 4px; color: var(--atrament-2); font-family: var(--font-maly); }
+.pole input, .pole select { width: 100%; padding: 8px 10px; background: var(--papier); color: var(--atrament); border: var(--ramka); font: inherit; }
+.przycisk { display: inline-block; padding: 8px 16px; background: var(--bursztyn); color: var(--ciemny); border: 0; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; }
+.przycisk.drugi { background: var(--papier-3); color: var(--atrament); }
+.blad { min-height: 1.4em; color: var(--czerwony); margin: 0 0 12px; }
+.podpowiedz { margin-top: 16px; color: var(--atrament-3); font-family: var(--font-maly); }
+a { color: var(--turkus); }
+.stopka { display: flex; justify-content: space-between; margin-top: 20px; }
+#wersja { position: fixed; right: 8px; bottom: 6px; color: var(--atrament-3); font-family: var(--font-maly); font-size: 12px; }

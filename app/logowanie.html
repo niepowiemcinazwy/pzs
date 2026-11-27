@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logowanie – Team Environment</title>
+    <meta name="commit" content="%COMMIT%" />
+  </head>
+  <body>
+    <main class="karta">
+      <h1>Logowanie</h1>
+      <p class="opis">Zaloguj się kontem firmowym, żeby zobaczyć swoje zadania.</p>
+      <form id="logowanie" novalidate>
+        <label class="pole"><span>E-mail</span><input id="email" name="email" type="email" autocomplete="username" required /></label>
+        <label class="pole"><span>Hasło</span><input id="haslo" name="haslo" type="password" autocomplete="current-password" required /></label>
+        <p class="blad" id="blad" role="alert"></p>
+        <button class="przycisk" type="submit">Zaloguj</button>
+      </form>
+      <p class="podpowiedz">Konto demo: kamil.styn@atlas-software.pl, hasło: demo123</p>
+      <div class="stopka"><a href="./">← Wróć do biura</a></div>
+    </main>
+    <div id="wersja">wersja %COMMIT%</div>
+    <script type="module" src="/src/logowanie.js"></script>
+  </body>
+</html>
