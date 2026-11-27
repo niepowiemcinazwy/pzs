@@ -1,7 +1,7 @@
 # Raport wkładu – Sprint 3
 
-**Okno Sprintu 3:** od 18.11.2026 18:00 do 27.11.2026 23:59 (czas polski, +01:00).
-Sprint 3 kończy się dzień przed zjazdem 28.11.2026.
+**Okno Sprintu 3:** od 18.11.2026 18:00 do 27.11.2026 23:20 (czas polski, +01:00).
+Sprint 3 kończy się dzień przed zjazdem 28.11.2026. Zamknęliśmy go 27.11 o 23:20, tuż przed scaleniem tego raportu (PR #14), więc sam raport liczy się już do Sprintu 4.
 
 Liczymy tylko to, co weszło na `main` w tym oknie, oraz review i zgłoszenia w Jirze z tego samego okresu.
 Nazwy autorów ujednolica plik `.mailmap` (Dawid commituje z dwóch kont, Mateusz miał na jednym komputerze nazwę `mat sob`).
@@ -19,14 +19,14 @@ Każdy z nas ma w Sprincie 3 jedną historyjkę albo zadanie, jeden scalony Pull
 ## Commity (squash, jeden na Pull Request)
 
 ```
-$ git shortlog -sn --no-merges --since="2026-11-18T18:00+01:00" --until="2026-11-27T23:59+01:00" origin/main
+$ git shortlog -sn --no-merges --since="2026-11-18T18:00+01:00" --until="2026-11-27T23:20+01:00" origin/main
      1	Dawid Wawer
      1	Kamil Styn
      1	Mateusz Sobczak
 ```
 
 ```
-$ git log --no-merges --since="2026-11-18T18:00+01:00" --until="2026-11-27T23:59+01:00" --format='%h %aN %s' --shortstat origin/main
+$ git log --no-merges --since="2026-11-18T18:00+01:00" --until="2026-11-27T23:20+01:00" --format='%h %aN %s' --shortstat origin/main
 6f3a285 Dawid Wawer docs(contract): add rules for disputes and unequal contribution (#11)
  1 file changed, 36 insertions(+), 1 deletion(-)
 a5777b1 Kamil Styn feat: add my tasks page (#13)
@@ -38,7 +38,7 @@ a5777b1 Kamil Styn feat: add my tasks page (#13)
 ## Pull Requesty scalone w Sprincie 3
 
 ```
-$ gh pr list --state merged --search "merged:2026-11-18T18:00:00+01:00..2026-11-27T23:59:00+01:00" --json number,author,title --jq '.[] | "#\(.number) \(.author.login) \(.title)"'
+$ gh pr list --state merged --search "merged:2026-11-18T18:00:00+01:00..2026-11-27T23:20:00+01:00" --json number,author,title --jq '.[] | "#\(.number) \(.author.login) \(.title)"'
 #13 Styneek feat: add my tasks page
 #12 MataKomandos feat: add login page
 #11 niepowiemcinazwy docs(contract): add rules for disputes and unequal contribution
